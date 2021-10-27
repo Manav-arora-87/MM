@@ -28,8 +28,8 @@ def SendMail(receiver_email, message):
 def SendHTMLMail(receiver_email, msg):
 
 
-    sender_email = "tt1791180@gmail.com"
-    password = "12345nitin"
+    sender_email = "aroramanav886@gmail.com"
+    password = "Annu@786"
 
 
 
@@ -54,6 +54,7 @@ def SendHTMLMail(receiver_email, msg):
 
     # Turn these into plain/html MIMEText objects
     part1 = MIMEText(text, "plain")
+    print(part1)
     part2 = MIMEText(html, "html")
 
     # Add HTML/plain-text parts to MIMEMultipart message
