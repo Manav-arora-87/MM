@@ -1,0 +1,233 @@
+<style type="text/css">
+  .root{
+        display:flex;
+        justify-content: center;
+        align-items : center ;
+        background-color:#dfe6e9;
+        padding:20px;
+    }
+    .gap{
+        margin-top: 10px;
+    }
+    .myframe{
+    width:600px;
+    background-color:#fff;
+    padding:20px;
+    border-radius:10px;
+    }
+    .btnstyle{
+        display:flex;
+        justify-content:center;
+        align-items: center;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/static/javascript/purchase.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>DisplayAllIssue</title>
+</head>
+<body>
+<div style="font-weight:bold;letter-spacing:1px; margin-left:65px; padding:10px">
+ List of Issued Items
+</div>
+<table class="table table-striped myframe " style=" margin-left:auto; margin-right:auto; width:90%">
+  <thead>
+
+
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Employee<br> Id</th>
+      <th scope="col">Category<br> Id</th>
+      <th scope="col">Sub-Category<br> Id</th>
+      <th scope="col">Product<br> Id</th>
+      <th scope="col">Final Product<br>Id</th>
+      <th scope="col">demand_Employee<br> Id</th>
+      <th scope="col">Issue<br>Date</th>
+      <th scope="col">QTY Issue</th>
+      <th scope="col">Remark</th>
+      <th scope="col">Update</th>
+
+      </tr>
+  </thead>
+  <tbody>
+
+    {% for row in rows %}
+      <tr>
+      <th scope="row">{{forloop.counter0}}</th>
+      <td>{{row.0}} </td>
+      <td>{{row.1}}/{{row.10}}</td>
+      <td>{{row.2}}/{{row.11}}</td>
+      <td>{{row.3}}/{{row.12}}</td>
+      <td>{{row.4}}/{{row.13}}</td>
+      <td>{{row.5}}</td>
+      <td>{{row.6}}</td>
+      <td>{{row.7}}</td>
+      <td>{{row.8}}</td>
+
+      <td><a  class = "button is-primary modal-button" data="{{row}}" data-target = "#modal" >Edit/Delete</a></td>
+
+    </tr>
+
+    {% endfor %}
+
+  </tbody>
+</table>
+</body>
+<div id = "modal" class = "modal"  >
+	                 <div class = "modal-background"></div>
+               <div class = "modal-content" style="background:#dfe6e9;border-radius:10px;width:550px;height:auto;">
+
+               <form action="/issueeditdeleterecord">
+        <input type="hidden"  id="issueid" name="issueid">
+
+<div class="root">
+<div  class="myframe">
+    <div class="row" style="display:flex; align-items:center;font-size:14px;letter-spacing:2px;font-weight:bold;padding-left:20px; margin-bottom:10px;">
+
+        Edit Issue Details
+    </div>
+
+    <div class="row gap">
+        <div class="col">
+            <input  type="text" class="form-control" id="employeeid" name="employeeid">
+        </div>
+    </div>
+
+    <div class="row gap">
+        <div class="col">
+            <select class="form-control" id="categoryid" name="categoryid">
+                <!--<option value="{{row.0}}">{{row.0}} </option>-->
+            </select>
+        </div>
+    </div>
+    <div class="row gap">
+        <div class="col">
+            <select class="form-control" id="subcategoryid" name="subcategoryid">
+               <!--<option value="{{row.1}}">{{row.1}}</option>-->
+            </select>
+        </div>
+    </div>
+    <div class="row gap">
+        <div class="col">
+            <select class="form-control" id="productid" name="productid">
+            <!--    <option value="{{row.2}}">{{row.2}}</option>-->
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row gap">
+        <div class="col">
+            <select class="form-control" id="finalproductid" name="finalproductid">
+            <!--    <option value="{{row.2}}">{{row.2}}</option>-->
+            </select>
+        </div>
+    </div>
+
+    <div class="row gap">
+        <div class="col">
+            <input  type="text" class="form-control" id="demand_employeeid" name="demand_employeeid">
+        </div>
+    </div>
+
+    <div class="row gap">
+        <div class="col">
+            <input type="date" class="form-control" id="issuedate" name="issuedate">
+        </div>
+
+    </div>
+
+    <div class="row gap">
+        <div class="col">
+          <input type="text" class="form-control"  id="qtyissue" name="qtyissue">
+        </div>
+
+    </div>
+
+    <div class="row gap">
+        <div class="col">
+          <input type="text" class="form-control"  id="remark" name="remark">
+        </div>
+
+    </div>
+
+    <div class="row gap">
+        <div class="col btnstyle">
+            <button type="submit"  value="Edit" name="btn" class="btn btn-primary w-50">Edit</button>
+        </div>
+        <div class="col btnstyle">
+            <button  type="submit" name="btn" value="Delete" class="btn btn-primary w-50">Delete</button>
+        </div>
+    </div>
+
+
+</div>
+</div>
+</form>
+
+
+               </div>
+               <button class = "modal-close is-large" aria-label = "close"></button>
+               </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+        function setData(data)
+        {
+             data=data.replace("("," ")
+             data=data.replace(")"," ")
+             data=data.replaceAll("'","")
+             data=data.split(",")
+             return data
+        }
+
+         $(".modal-button").click(function() {
+            var target = $(this).data("target");
+            var data =$(this).attr('data')
+            data=setData(data)
+
+
+
+
+            $('#issueid').val(data[9].trim())
+            $('#employeeid').val(data[0].trim())
+            $('#categoryid').val(parseInt(data[1]))
+            $('#subcategoryid').append($('<option>').text(data[11]).val(data[2]))
+            $('#productid').append($('<option>').text(data[12]).val(data[3]))
+            $('#finalproductid').append($('<option>').text(data[13]).val(data[4]))
+            $('#demand_employeeid').val(data[5].trim())
+            $('#issuedate').val(data[6].trim())
+            $('#qtyissue').val(data[7].trim())
+            $('#remark').val(data[8].trim())
+            $("html").addClass("is-clipped");
+            $(target).addClass("is-active");
+         });
+
+         $(".modal-close").click(function() {
+            $("html").removeClass("is-clipped");
+            $(this).parent().removeClass("is-active");
+         });
+      </script>
+
+
+
+
+</html>
