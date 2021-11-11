@@ -9,9 +9,12 @@ from . import PoolDict,Pool
 import uuid
 
 def AdminLogout(request):
-    del request.session['ADMIN']
-    return render(request, "AdminInterface.html")
-
+    try:
+     del request.session['ADMIN']
+     return render(request, "AdminInterface.html")
+    except Exception as e:
+        pass
+    return render(request,'AdminInterface.html')
 
 def AdminInterface(request):
     try:

@@ -22,8 +22,7 @@ from . import EmployeeView,StateCityView,CategoryView,SubCategoryView,ProductVie
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+
     #Employee
     path('employeelogin/', EmployeeView.EmployeeLogin),
     path('checkemployeelogin', EmployeeView.CheckEmployeeLogin),
